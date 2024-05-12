@@ -1,41 +1,49 @@
-# Hello World
+# Functions and Errors
 
-This Solidity program is a simple "Hello World" program that demonstrates the basic syntax and functionality of the Solidity programming language. The purpose of this program is to serve as a starting point for those who are new to Solidity and want to get a feel for how it works.
+This Program is a simple Error Handling Program that handles require function, assert, and revert function. 
 
-## Description
+## Error Handling Assessment
 
-This program is a simple contract written in Solidity, a programming language used for developing smart contracts on the Ethereum blockchain. The contract has a single function that returns the string "Hello World!". This program serves as a simple and straightforward introduction to Solidity programming, and can be used as a stepping stone for more complex projects in the future.
+This repository is for project assessment and a requirement for the IT Elective 2 subject in BSIT in National Teachers College for the solidity-vax-intermediate course of Metacrafters Academy. The purpose of this project is to enhance my skills in web3. 
 
 ## Getting Started
-
+This project aims to tick the three requirements which is the require(), revert(), and assert() functions that stores the data and handling the errors.
 ### Executing program
 
-To run this program, you can use Remix, an online Solidity IDE. To get started, go to the Remix website at https://remix.ethereum.org/.
+To run this program, I used remix.ethereum.org as my IDE to run this project
+here's the complete code of my project:
 
-Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., HelloWorld.sol). Copy and paste the following code into the file:
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.6.12 <0.9.0;
 
-```javascript
-pragma solidity ^0.8.4;
+contract MyContract {
+    uint256 public value;
+    address public owner;
 
-contract HelloWorld {
-    function sayHello() public pure returns (string memory) {
-        return "Hello World!";
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function setValue(uint256 _newValue) public {
+
+
+        require(msg.sender == owner, "Only the owner can set the value");
+
+        assert(_newValue != 0);
+
+        if(_newValue < value) {
+            revert("New value must be greater than or equal to current value");
+        }
+
+        value = _newValue;
     }
 }
 
-```
-
-To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.4" (or another compatible version), and then click on the "Compile HelloWorld.sol" button.
-
-Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "HelloWorld" contract from the dropdown menu, and then click on the "Deploy" button.
-
-Once the contract is deployed, you can interact with it by calling the sayHello function. Click on the "HelloWorld" contract in the left-hand sidebar, and then click on the "sayHello" function. Finally, click on the "transact" button to execute the function and retrieve the "Hello World!" message.
 
 ## Authors
 
-Metacrafter Chris  
-[@metacraftersio](https://twitter.com/metacraftersio)
-
+Lacanilao, Jay B. 
+@lacanilao_jay @ Discord
 
 ## License
 
